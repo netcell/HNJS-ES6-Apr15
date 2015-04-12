@@ -1,0 +1,683 @@
+<!--
+Google IO 2012 HTML5 Slide Template
+
+Authors: Eric Bidelman <ebidel@gmail.com>
+         Luke Mahe <lukem@google.com>
+
+URL: https://code.google.com/p/io-2012-slides
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Google IO 2012</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <!--This one seems to work all the time, but really small on ipad-->
+  <!--<meta name="viewport" content="initial-scale=0.4">-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" media="all" href="theme/css/default.css">
+  <link rel="stylesheet" media="all" href="theme/css/app.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css">
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
+</head>
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+<!-- <slide class="logoslide nobackground">
+  <article class="flexbox vcenter">
+    <span><img src="images/google_developers_logo.png"></span>
+  </article>
+</slide>
+ -->
+<slide class="title-slide segue nobackground">
+  <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside>
+  <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+  <hgroup class="auto-fadein">
+    <h1 data-config-title><!-- populated from slide_config.json --></h1>
+    <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
+    <p data-config-presenter><!-- populated from slide_config.json --></p>
+  </hgroup>
+</slide>
+
+
+<slide class="big" >
+  
+    <hgroup>
+      <h2>Covering topics</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li>Transpilers</li>
+<li>Arrow Functions</li>
+<li>Enhanced Object Properties</li>
+<li>Rest + Default + Spread</li>
+<li>Destructing</li>
+<li>Class</li>
+<li>Constants and Scope Variables + Functions</li>
+<li>Template Strings</li>
+</ul></article>
+ 
+</slide>
+
+<slide class="segue dark nobackground" >
+  
+    <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Transpilers</h2>
+      <h3></h3>
+    </hgroup>
+  
+</slide>
+
+<slide class="big" >
+  
+    <hgroup>
+      <h2>Traceur</h2>
+      <h3>Google</h3>
+    </hgroup>
+    <article ><ul>
+<li>JavaScript.next-to-JavaScript-of-today compiler</li>
+<li><a href="https://github.com/google/traceur-compiler">Github: google/traceur-compiler</a></li>
+<li><a href="https://google.github.io/traceur-compiler/demo/repl.html#">Transcoding Demo</a></li>
+</ul></article>
+ 
+</slide>
+
+<slide class="big" >
+  
+    <hgroup>
+      <h2>Babel</h2>
+      <h3>babeljs.io</h3>
+    </hgroup>
+    <article ><ul>
+<li>With a large range of plugins and browser support.</li>
+<li><a href="https://babeljs.io/">babeljs.io</a>.</li>
+<li><a href="https://babeljs.io/repl/">Transcoding Demo</a>.</li>
+</ul></article>
+ 
+</slide>
+
+<slide class="segue dark nobackground" >
+  
+    <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Arrow Functions</h2>
+      <h3></h3>
+    </hgroup>
+  
+</slide>
+
+<slide class="big" >
+  
+    <hgroup>
+      <h2>Expression Bodies</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><pre class="prettyprint" data-lang="javascript">
+argument => return
+</pre></article>
+ 
+</slide>
+
+<slide class="big" >
+  
+    <hgroup>
+      <h2>Single Argument</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><pre class="prettyprint" data-lang="javascript">
+console.clear();
+var evens = [0, 2, 4, 6, 8];
+<b>var odds  = evens.map(v => v + 1);</b>
+console.log(odds);
+</pre></article>
+ 
+</slide>
+
+<slide class="big" >
+  
+    <hgroup>
+      <h2>Multiple Arguments</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul class="build">
+<li>
+<p><pre class="prettyprint" data-lang="javascript">
+console.clear();
+var evens = [0, 2, 4, 6, 8];
+var sum   = evens.reduce(<b>(prev, cur)</b> =&gt; prev + cur);
+console.log(sum);
+</pre></p>
+</li>
+<li>
+<p>No argument?</p>
+</li>
+<li>
+<p><pre class="prettyprint" data-lang="javascript">
+console.clear();
+var evens = [0, 2, 4, 6, 8];
+var sum   = evens.reduce(<b>()</b> =&gt; return 0);
+console.log(sum);
+</pre></p>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide class="big" >
+  
+    <hgroup>
+      <h2>Returns Object</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul class="build">
+<li>
+<p><pre class="prettyprint" data-lang="javascript">
+console.clear();
+var evens = [0, 2, 4, 6, 8];
+var pairs = evens.map(v =&gt; <b>({ even: v, odd: v + 1 })</b>);
+console.log(pairs);
+</pre></p>
+</li>
+<li>
+<p>Return array</p>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide class="big" >
+  
+    <hgroup>
+      <h2>Statement Bodies</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><pre class="prettyprint" data-lang="javascript">
+console.clear();
+var evens = [0, 2, 4, 6, 8];
+var pairs = evens.map(v => <b>{</b>
+    let result = { even: v, odd: v + 1 };
+    return result
+<b>}</b>);
+console.log(pairs);
+</pre></article>
+ 
+</slide>
+
+<slide class="big" >
+  
+    <hgroup>
+      <h2>Lexical *this*</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><pre class="prettyprint" data-lang="javascript">
+console.clear();
+var obj = {
+    evens : [0, 2, 4, 6, 8],
+    print : function() {
+        setTimeout(() => {
+            if (<b>this</b>.evens.length) {
+                console.log(<b>this</b>.evens.shift());
+                <b>this</b>.print();
+            }
+        }, 100);
+    }
+}
+obj.print();
+</pre></article>
+ 
+</slide>
+
+<slide class="segue dark nobackground" >
+  
+    <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Enhanced Object Properties</h2>
+      <h3></h3>
+    </hgroup>
+  
+</slide>
+
+<slide class="big" >
+  
+    <hgroup>
+      <h2>Property Shorthand</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><pre class="prettyprint" data-lang="javascript">
+console.clear();
+function createVector(x, y){
+    return <b>{x, y}</b>
+}
+console.log(createVector(1, 2));
+</pre></article>
+ 
+</slide>
+
+<slide class="big" >
+  
+    <hgroup>
+      <h2>Method Properties</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><pre class="prettyprint" data-lang="javascript">
+console.clear();
+var obj = {
+    evens : [0, 2, 4, 6, 8],
+    <b>print() {</b>
+        setTimeout(() => {
+            if (this.evens.length) {
+                console.log(this.evens.shift());
+                this.print();
+            }
+        }, 100);
+    }
+}
+obj.print();
+</pre></article>
+ 
+</slide>
+
+<slide class="big" >
+  
+    <hgroup>
+      <h2>Computed Property Names</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><pre class="prettyprint" data-lang="javascript">
+console.clear();
+function name() { return 'evens'; }
+var obj = {
+    <b>[name()]</b> : [0, 2, 4, 6, 8]
+}
+console.log(obj.evens);
+</pre></article>
+ 
+</slide>
+
+<slide class="segue dark nobackground" >
+  
+    <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Rest + Default + Spread</h2>
+      <h3></h3>
+    </hgroup>
+  
+</slide>
+
+<slide class="big" >
+  
+    <hgroup>
+      <h2>Rest</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><pre class="prettyprint" data-lang="javascript">
+console.clear();
+function log(<b>...a</b>){
+    var s = a.reduce((prev, cur) => prev + '' + cur);
+    console.log(s);
+}
+log('a', 'b', 'c');
+</pre></article>
+ 
+</slide>
+
+<slide class="big" >
+  
+    <hgroup>
+      <h2>Default</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><pre class="prettyprint" data-lang="javascript">
+console.clear();
+function createVector(<b>x = 0, y = 0</b>){
+    return {x, y}
+}
+console.log(createVector());
+</pre></article>
+ 
+</slide>
+
+<slide class="big" >
+  
+    <hgroup>
+      <h2>Spread</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><pre class="prettyprint" data-lang="javascript">
+console.clear();
+var array = [1, 2];
+function createVector(x, y){
+    return {x, y}
+}
+console.log(createVector(<b>...array</b>));
+</pre></article>
+ 
+</slide>
+
+<slide class="segue dark nobackground" >
+  
+    <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Destructing</h2>
+      <h3></h3>
+    </hgroup>
+  
+</slide>
+
+<slide class="big" >
+  
+    <hgroup>
+      <h2>Array Matching</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><pre class="prettyprint" data-lang="javascript">
+console.clear();
+var n = [0, 2, 4];
+<b>var [a , , b, c] = n;</b>
+console.log(a, b, c);
+</pre></article>
+ 
+</slide>
+
+<slide class="big" >
+  
+    <hgroup>
+      <h2>Object Matching</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><pre class="prettyprint" data-lang="javascript">
+console.clear();
+var vector = {x: 3, y: 4};
+<b>var { x, y } = vector;</b>
+console.log(`x-coordinate: ${x}
+y-coordinate: ${y}`);
+</pre></article>
+ 
+</slide>
+
+<slide class="big" >
+  
+    <hgroup>
+      <h2>Application: Named arguments</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><pre class="prettyprint" data-lang="javascript">
+console.clear();
+var vector = {x: 3, y: 4};
+<b>function getMagnitude({x, y}){</b>
+    return Math.sqrt(x*x + y*y);
+}
+console.log(getMagnitude(vector));
+</pre></article>
+ 
+</slide>
+
+<slide class="segue dark nobackground" >
+  
+    <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Class</h2>
+      <h3></h3>
+    </hgroup>
+  
+</slide>
+
+<slide class="big" >
+  
+    <hgroup>
+      <h2>Basic</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><pre class="prettyprint" data-lang="javascript">
+console.clear();
+<b>class Point {</b>
+    <b>constructor() {</b>
+        this.setTo(...arguments)
+    }
+    <b>setTo(x = 0, y = x) {</b>
+        this.x = x;
+        this.y = y;
+        return this;
+    }
+    <b>static create(){</b>
+        return new Point(...arguments);
+    }
+<b>}</b>
+var p = new Point().setTo(1);
+var q = Point.create(3, 4);
+console.log(p, q);
+</pre></article>
+ 
+</slide>
+
+<slide class="big" >
+  
+    <hgroup>
+      <h2>Inheritance</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><pre class="prettyprint" data-lang="javascript">
+class Vector <b>extends</b> Point {
+    constructor() {
+        <b>super</b>(...arguments);
+    }
+    setTo(position = 0){
+        if (position.x) {
+            let {x, y} = position;
+            return <b>super.setTo</b>(x, y);
+        } else if (position.length) {
+            return <b>super.setTo</b>(...position);
+        } else return <b>super.setTo</b>(...arguments);
+    }
+
+}
+var v = new Vector().setTo([3, 4]);
+console.log(v);
+</pre></article>
+ 
+</slide>
+
+<slide class="big" >
+  
+    <hgroup>
+      <h2>Getter & Setter</h2>
+      <h3></h3>
+    </hgroup>
+    <article class="smaller"><pre class="prettyprint" data-lang="javascript">
+class Vector extends Point {
+    //...
+    normalize() {
+        var m = <b>this.magnitude</b>;
+        this.x /= m;
+        this.y /= m;
+        return this;
+    }
+    <b>get magnitude() {</b>
+        var {x, y} = this;
+        return Math.sqrt(x*x + y*y) || 1;
+    }
+    <b>set magnitude(magnitude) {</b>
+        this.normalize();
+        this.x *= magnitude;
+        this.y *= magnitude;
+    }
+}
+var v = new Vector().setTo([3, 4]);
+    <b>v.magnitude = 10;</b>
+console.log(v);
+</pre></article>
+ 
+</slide>
+
+<slide class="big" >
+  
+    <hgroup>
+      <h2>Bonus ES7: Class property</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><pre class="prettyprint" data-lang="javascript">
+class Point {
+    x = 0,
+    y = 0,
+    static defaultX = 0,
+    static defaultY = 0,
+    //...
+}
+</pre></article>
+ 
+</slide>
+
+<slide class="segue dark nobackground" >
+  
+    <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Constants and Scope Variables + Functions</h2>
+      <h3></h3>
+    </hgroup>
+  
+</slide>
+
+<slide class="big" >
+  
+    <hgroup>
+      <h2>Constants</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><pre class="prettyprint" data-lang="javascript">
+<b>const</b> PI = 3.141593;
+PI = 1;
+</pre></article>
+ 
+</slide>
+
+<slide class="big" >
+  
+    <hgroup>
+      <h2>Scope Variables</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><pre class="prettyprint" data-lang="javascript">
+console.clear();
+var x = 1, y = 1;
+{
+    <b>let</b> x = 2;
+    var y = 2;
+    console.log(x, y);
+}
+console.log(x, y);
+</pre></article>
+ 
+</slide>
+
+<slide class="big" >
+  
+    <hgroup>
+      <h2>Scope Functions</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><pre class="prettyprint" data-lang="javascript">
+console.clear();
+function foo () { return 0 }
+{
+    function foo () { return 1 }
+    console.log(foo());
+}
+console.log(foo());
+</pre></article>
+ 
+</slide>
+
+<slide class="segue dark nobackground" >
+  
+    <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Template Strings</h2>
+      <h3></h3>
+    </hgroup>
+  
+</slide>
+
+<slide class="big" >
+  
+    <hgroup>
+      <h2>String Interpolation</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><pre class="prettyprint" data-lang="javascript">
+console.clear();
+var person = { name: 'Hulk' };
+console.log(`Hello
+<b>${person.name}</b>`);
+</pre>
+
+<p><strong>Line break</strong></p></article>
+ 
+</slide>
+
+<slide class="big" >
+  
+    <hgroup>
+      <h2>Custom Interpolation</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><pre class="prettyprint" data-lang="javascript">
+console.clear();
+var person = { name: 'Hulk' };
+<b>console.log`Hello ${person.name}`;</b>
+</pre></article>
+ 
+</slide>
+
+
+<slide class="thank-you-slide segue nobackground">
+  <aside class="gdbar right"><img src="images/google_developers_icon_128.png"></aside>
+  <article class="flexbox vleft auto-fadein">
+    <h2>&lt;Thank You!&gt;</h2>
+  </article>
+  <p class="auto-fadein" data-config-contact>
+    <br>
+    <span style="width: 200px">medium</span><a href="http://medium.com/netcell">medium.com/netcell</a>
+    <br>
+    <span style="width: 200px">facebook</span><a href="http://facebook.com/netcell">facebook.com/netcell</a>
+    <br>
+    <span style="width: 200px">twitter</span><a href="http://twitter.com/@netcell">twitter.com/@netcell</a>
+    <br>
+    <span style="width: 200px">github</span><a href="http://github.com/netcell">github.com/netcell</a>
+    <br>
+    <span style="width: 200px">youtube</span><a href="http://youtube.com/tebaomang">youtube.com/tebaomang</a>
+  </p>
+</slide>
+
+<!-- <slide class="logoslide dark nobackground">
+  <article class="flexbox vcenter">
+    <span><img src="images/google_developers_logo_white.png"></span>
+  </article>
+</slide> -->
+
+<slide class="backdrop"></slide>
+
+</slides>
+
+<script>
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<!--[if IE]>
+  <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+  <script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>
